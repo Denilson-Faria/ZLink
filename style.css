@@ -1,46 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-*{margin: 0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Outfit", sans-serif;
 }
 
-html{
-    height: 100vh;
+html {
+    height: 100%;
     font-size: 14px;
 }
 
-body{
+body {
     background-color: #282828;
-    height: 100%;
+    min-height: 100vh;
 }
 
-.container{
-    height: 100%;
+.container {
+    min-height: 100vh;
     max-width: 550px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px;
+    padding: 24px 20px;
     color: white;
+    animation: fadeContainer 0.8s ease forwards;
 }
 
-a{
+a {
     text-decoration: none;
     color: white;
 }
 
-.degrade{
+.degrade {
     position: relative;
     overflow: hidden;
     background: linear-gradient(to right, #8b16f8, #a80585);
     color: white;
     border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.degrade::before{
+.degrade::before {
     content: "";
     position: absolute;
     top: 0;
@@ -50,92 +53,257 @@ a{
     background: linear-gradient(
         120deg,
         transparent,
-        rgba(255,255,255,0.4),
+        rgba(255,255,255,0.35),
         transparent
     );
     transition: 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.degrade:hover{
+.degrade:hover {
     box-shadow: 0 0 20px #a80585, 0 0 40px #8b16f8;
-    transform: scale(1.05);
-    transition: .3s;
+    transform: scale(1.03);
 }
 
-
-.degrade:hover::before{
+.degrade:hover::before {
     left: 100%;
 }
 
-header{
+header {
     text-align: center;
     margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+    animation-delay: 0.1s;
 }
 
-header img{
+header img {
     width: 120px;
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
-    
-    
+    display: block;
+    margin: 0 auto 18px;
+    opacity: 0;
+    animation: zoomFade 0.8s ease forwards;
+    animation-delay: 0.15s;
 }
 
-header h1{
+header h1 {
     font-size: 2em;
     margin-bottom: 10px;
     color: #ffffff;
     font-weight: 300;
 }
 
-header small {
-  display: block;
-  margin-top: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #ffffff; 
-  letter-spacing: 0.3px;
+header p {
+    font-size: 1rem;
+    color: #e7e7e7;
+    margin-bottom: 4px;
 }
 
-section.btn-links{
+header small {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+}
+
+section.btn-links {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    
-}
-a.link{
-    display: block;
-    width: 100%;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+    animation-delay: 0.25s;
 }
 
-a.link button{
+a.link {
+    display: block;
     width: 100%;
-    padding: 10px 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+}
+
+a.link:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+a.link:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+a.link:nth-child(3) {
+    animation-delay: 0.5s;
+}
+
+a.link button {
+    width: 100%;
+    padding: 14px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border: none;
     border-radius: 30px;
-    font-size: 1.2em ;
+    font-size: 1.15em;
     cursor: pointer;
-    margin-left: 12px;
+    margin-left: 0;
 }
 
-a.link i{
-    font-size: 1.5em;
+a.link i {
+    font-size: 1.4em;
 }
 
-footer{
+footer {
     text-align: center;
-    margin: 30px;
+    margin-top: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+    animation-delay: 0.55s;
 }
 
-footer a.btn-footer{
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    font-size: 2em;
-    line-height: 60px;
+footer a.btn-footer {
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
     border-radius: 50%;
-    margin: 0 10px;
+    margin: 0 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+footer a.btn-footer:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* animações */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomFade {
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeContainer {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 24px 18px;
+    }
+
+    header {
+        margin-bottom: 32px;
+    }
+
+    header img {
+        width: 108px;
+        height: 108px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    a.link button {
+        font-size: 1.05em;
+        padding: 13px 18px;
+    }
+
+    a.link i {
+        font-size: 1.3em;
+    }
+
+    footer a.btn-footer {
+        width: 52px;
+        height: 52px;
+        font-size: 1.6em;
+        margin: 0 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 13px;
+    }
+
+    .container {
+        padding: 20px 14px;
+        justify-content: center;
+    }
+
+    header img {
+        width: 96px;
+        height: 96px;
+    }
+
+    header h1 {
+        font-size: 1.6em;
+    }
+
+    header p {
+        font-size: 0.9rem;
+    }
+
+    header small {
+        font-size: 0.8rem;
+    }
+
+    section.btn-links {
+        gap: 16px;
+    }
+
+    a.link button {
+        padding: 12px 16px;
+        font-size: 1em;
+        border-radius: 24px;
+    }
+
+    footer {
+        margin-top: 26px;
+    }
+
+    footer a.btn-footer {
+        width: 48px;
+        height: 48px;
+        font-size: 1.45em;
+        margin: 0 5px;
+    }
+}
+
+@media (max-height: 700px) {
+    .container {
+        justify-content: flex-start;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
 }
